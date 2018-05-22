@@ -1,0 +1,22 @@
+{
+  "title": "XD60 0rax for Mac",
+  "rules": [{
+    "description": "Remap Left Option + Grave to Grave (without modifiers)",
+    "manipulators": [
+      {
+        "type": "basic",
+        "from": {
+          "key_code": "grave_accent_and_tilde",
+          "modifiers": {
+            "mandatory": [
+              "left_option"
+            ]
+          }
+        },
+        "to": [{
+          "key_code": "grave_accent_and_tilde"
+        }]
+      }
+    ]
+  }]
+}
