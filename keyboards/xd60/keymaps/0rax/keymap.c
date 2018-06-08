@@ -1,11 +1,32 @@
 #include QMK_KEYBOARD_H
-#include "action_layer.h"
 
 // Layer definitions (https://docs.qmk.fm/#/keymap)
 enum x60_layers {
   _BL,
   _FL,
 };
+
+// RGB Underflow Flag FR
+void rgblight_fr(void)
+{
+  rgblight_sethsv_at(240, 255, 255, 0);
+  rgblight_sethsv_at(240, 255, 255, 1);
+  rgblight_sethsv_at(0, 0, 255, 2);
+  rgblight_sethsv_at(0, 0, 255, 3);
+  rgblight_sethsv_at(0, 255, 255, 4);
+  rgblight_sethsv_at(0, 255, 255, 5);
+}
+
+// RGB Underflow Flag UK
+void rgblight_uk(void)
+{
+  rgblight_sethsv_at(240, 255, 255, 0);
+  rgblight_sethsv_at(0, 0, 255, 1);
+  rgblight_sethsv_at(0, 255, 255, 2);
+  rgblight_sethsv_at(0, 255, 255, 3);
+  rgblight_sethsv_at(0, 0, 255, 4);
+  rgblight_sethsv_at(240, 255, 255, 5);
+}
 
 // Keymaps definition for each layer (https://docs.qmk.fm/#/keymap?id=layers-and-keymaps)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -64,12 +85,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // Action on Press
         #ifdef RGBLIGHT_ENABLE
-          rgblight_sethsv_red();
+          rgblight_uk();
         #endif
       } else {
         // Action on Release
         #ifdef RGBLIGHT_ENABLE
-          rgblight_sethsv_blue();
+          rgblight_sethsv_noeeprom_blue();
         #endif
       }
       // Let QMK process the press/release events normally after that
@@ -86,6 +107,6 @@ void matrix_init_user(void)
 {
   // RGB Lighting setup (https://docs.qmk.fm/#/feature_rgblight)
   rgblight_enable();      // Enable RGB Lighting
-  rgblight_mode(1);       // Set RGB Mode to static
+  rgblight_mode(1);       // Set RGB Mode to PLAIN
   rgblight_sethsv_blue(); // Set RGB Color to BLUE
 }
