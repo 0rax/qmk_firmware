@@ -6,6 +6,12 @@ enum x60_layers {
   _FL,
 };
 
+// Macro keycode deinitions https://docs.qmk.fm/#/feature_macros
+enum macro_keycodes {
+  RGB_UK = SAFE_RANGE,
+  RGB_FR,
+};
+
 // Keymaps definition for each layer (https://docs.qmk.fm/#/keymap?id=layers-and-keymaps)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -22,11 +28,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // | LCTL | LGUI | LALT | LGUI |             SPACE             | ALT | FN  | LF← | DW↓ | RG→ |
   // `-----------------------------------------------------------------------------------------'
   [_BL] = LAYOUT_all(
-    KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,   KC_5,   KC_6,   KC_7,   KC_8,   KC_9,    KC_0,    KC_MINS,  KC_EQL,  KC_BSPC,  KC_NO,   \
-    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,    KC_P,    KC_LBRC,  KC_RBRC,           KC_NO,   \
-    KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,    KC_SCLN, KC_QUOT,  KC_NUHS,           KC_ENT,  \
-    OSM_SFT,   KC_NUBS,   KC_Z,    KC_X,    KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT, KC_UP,KC_DEL,  \
-    KC_LCTL, KC_LGUI, KC_LALT,                          KC_SPC,                          KC_RGUI, MO(_FL), KC_LEFT, KC_DOWN,  KC_RIGHT),
+    KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,   KC_5,   KC_6,   KC_7,   KC_8,   KC_9,    KC_0,    KC_MINS,  KC_EQL,  KC_BSPC,  KC_NO,  \
+    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,    KC_P,    KC_LBRC,  KC_RBRC,           KC_NO,  \
+    KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,    KC_SCLN, KC_QUOT,  KC_NUHS,           KC_ENT, \
+    OSM_SFT,   KC_NUBS,   KC_Z,    KC_X,    KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT, KC_UP,KC_DEL, \
+    KC_LCTL, KC_LGUI, KC_LALT,                          KC_SPC,                          KC_RGUI, MO(_FL), KC_LEFT, KC_DOWN,  KC_RIGHT ),
 
   // _FL: Function Layer
   // ,-----------------------------------------------------------------------------------------.
@@ -34,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // |-----------------------------------------------------------------------------------------|
   // |        |     |     |     |     |     |     |     |     |     |     |     |     |  Enter |
   // |---------------------------------------------------------------------------------|       |
-  // | DELETE  |     |     |VOLM↓|VMUTE|VOLM↑|MED◂◂|MED▮▮|MED▸▸|     |     |     |     |       |
+  // | DELETE  |RGBUK|RGBFR|VOLM↓|VMUTE|VOLM↑|MED◂◂|MED▮▮|MED▸▸|     |     |     |     |       |
   // |-----------------------------------------------------------------------------------------|
   // | SFT |RGBTG|RGBMD| CUT |COPY |PASTE|RGBH↑|RGBH↓|RGBS↑|RGBS↓|RGBB↑|RGBB↓|HOME | PG↑ | END |
   // |-----------------------------------------------------------------------------------------|
@@ -43,33 +49,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FL] = LAYOUT_all(
     RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,   KC_F10,  KC_F11,   KC_F12,  KC_DEL,  KC_NO,  \
     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_NO,    KC_NO,            KC_NO,  \
-    KC_DEL,  KC_NO,   KC_NO,   KC_VOLD,KC_MUTE,KC_VOLU, KC_MPRV,KC_MPLY,KC_MNXT,KC_NO,  KC_NO,   KC_NO,   KC_NO,              KC_ENT, \
-    OSM_SFT, RGB_TOG, RGB_MOD, KC_CUT,  KC_COPY,KC_PASTE,RGB_HUI,RGB_HUD,RGB_SAI,RGB_SAD,RGB_VAI,RGB_VAD, KC_HOME, KC_PGUP,   KC_END, \
-    KC_LCTL, KC_LGUI, KC_LALT,                          KC_SPC,                          KC_RGUI, MO(_FL), KC_NO,   KC_PGDOWN, KC_NO),
+    KC_DEL,  RGB_UK,  RGB_FR,  KC_VOLD,KC_MUTE,KC_VOLU, KC_MPRV,KC_MPLY,KC_MNXT,KC_NO,   KC_NO,   KC_NO,    KC_NO,            KC_ENT, \
+    OSM_SFT, RGB_TOG, RGB_MOD,   KC_CUT,  KC_COPY,KC_PASTE, RGB_HUI,RGB_HUD,RGB_SAI,RGB_SAD,RGB_VAI,RGB_VAD,KC_HOME, KC_PGUP, KC_END, \
+    KC_LCTL, KC_LGUI, KC_LALT,                          KC_SPC,                          KC_RGUI, MO(_FL), KC_NO,   KC_PGDOWN, KC_NO  ),
 };
 
 // Macro definitions (https://docs.qmk.fm/#/feature_macros)
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case F(0):
-      // When F(0) is pressed and hold, swith RGB to RED
-      // then set it back to BLUE when the key is released
-      if (record->event.pressed) {
-        // Action on Press
+  // Macro action on keypress
+  if (record->event.pressed) {
+    switch (keycode) {
+      case RGB_UK:
         #ifdef RGBLIGHT_ENABLE
           rgblight_flag_uk();
         #endif
-      } else {
-        // Action on Release
+        return false;
+      case RGB_FR:
         #ifdef RGBLIGHT_ENABLE
-          rgblight_sethsv_noeeprom_blue();
+          rgblight_flag_fr();
         #endif
-      }
-      // Let QMK process the press/release events normally after that
-      // Setting it to false wll prevent any further processing
-      return true;
-    default:
-      // Process all other keycodes normally
-      return true;
+        return false;
+    }
   }
+  // Return in process_record_user tels QMK how to process the event, if set to
+  // true, the process will handle the press/release events normally after any
+  // action taken here. Setting it to false will prevent any further processing
+  // of the keypress event.
+  return true;
 };

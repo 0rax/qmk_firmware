@@ -3,6 +3,7 @@
 // RGB Underflow Flag FR
 void rgblight_flag_fr(void)
 {
+  rgblight_mode_noeeprom(1);
   rgblight_sethsv_at(240, 255, 255, 0);
   rgblight_sethsv_at(240, 255, 255, 1);
   rgblight_sethsv_at(0, 0, 255, 2);
@@ -14,6 +15,7 @@ void rgblight_flag_fr(void)
 // RGB Underflow Flag UK
 void rgblight_flag_uk(void)
 {
+  rgblight_mode_noeeprom(1);
   rgblight_sethsv_at(240, 255, 255, 0);
   rgblight_sethsv_at(0, 0, 255, 1);
   rgblight_sethsv_at(0, 255, 255, 2);
