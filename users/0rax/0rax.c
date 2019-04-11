@@ -1,5 +1,6 @@
-#import "0rax.h"
-#import "rgbflags.h"
+#include QMK_KEYBOARD_H
+#include "0rax.h"
+#include "rgbflags.h"
 
 // Placeholder to allow per keyboard processing of event without overwriting the global `process_record_user` set here (https://docs.qmk.fm/features/feature_userspace#customized-functions)
 __attribute__ ((weak))
