@@ -10,5 +10,5 @@ RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight.  Do not enable this 
 SLEEP_LED_ENABLE = no       # Breathing sleep LED during USB suspend
 
 # Add custon C files
-SRC += rgbflag.c \
-       matrix.c
+SRC += matrix.c \
+       layerstate.c

@@ -1,5 +1,5 @@
 {
-  "title": "XD60 0rax for Mac",
+  "title": "0rax QMK for Mac",
   "rules": [{
     "description": "Remap Left Option + Grave to Grave (without modifiers)",
     "manipulators": [
