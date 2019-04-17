@@ -40,11 +40,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     }
     case K_RESET: {
+      // Set RGB underglow to red and put keyboard in RESET mode
       if (record->event.pressed) {
         #ifdef RGBLIGHT_ENABLE
           rgblight_enable_noeeprom();
-          rgblight_mode_noeeprom(1);
-          rgblight_sethsv_noeeprom(0, 255, 255);
+          rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+          rgblight_sethsv_noeeprom_red();
         #endif
         reset_keyboard();
       }
